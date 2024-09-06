@@ -11,7 +11,7 @@
 
 <br/>
 
-SGA is a web tool made to help you refine your skills in the Standard Galactic Alphabet (or Minecraft Ecnhantment Table language).
+SGA is a web tool made to help you refine your skills in the Standard Galactic Alphabet (or Minecraft Enchantment Table language).
 
 ---
 
