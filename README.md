@@ -15,6 +15,10 @@ SGA is a web tool made to help you refine your skills in the Standard Galactic A
 
 ---
 
+readme and featurelist coming soon
+
+---
+
 ## Contributing
 
 My SGA Trainer would love to get new features and fixes!
