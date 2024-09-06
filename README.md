@@ -38,5 +38,5 @@ If you'd like to contribute, please report an issue, or fork the repo and create
 <blockquote>
 <h3>Inspiration</h3>
 
-- DioriteTm's [Standard Galactic Trainer](https://www.dioritetm.xyz/sga)
+- [DioriteTm's Standard Galactic Trainer](https://www.dioritetm.xyz/sga)
 </blockquote>
