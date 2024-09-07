@@ -1,6 +1,6 @@
 <div align="center">
-  <h1 align="center"><strong>sga</strong></h1>
-  <h3>A tool to help you learn Standard Galactic Alphabet.</h3>
+  <h1 align="center"><strong><a href="https://sga.oragne.dev">SGA Trainer<a></strong></h1>
+  <h3>A tool to help you learn the Standard Galactic Alphabet.</h3>
 </div>
 
 <br/>
@@ -11,13 +11,21 @@
 
 <br/>
 
-SGA is a web tool made to help you refine your skills in the Standard Galactic Alphabet (or Minecraft Enchantment Table language).
+[SGA Trainer](https://sga.oragne.dev) is a web tool made to help you refine your skills in the Standard Galactic Alphabet (or Minecraft Enchantment Table language).
 
----
+## Current Features:
 
-readme and featurelist coming soon
+- **Simple UI:** Easy on the eyes, easy to learn.
+- **Elegant Font:** Sweet and simple font to memorise.
+- **Offline Access:** Save the webpage as `.html` and use Local Mode when offline.
+- **Random Word API:** Get access to a library of over 170k+ words! (Powered by the [Random Word API](https://random-word-api.herokuapp.com/))
 
----
+## Upcoming Features:
+
+- [ ] Notification System
+- [x] Offline Access (through Local Mode)
+- [ ] Settings page for seperate APIs and Fonts
+- [ ] XP System
 
 ## Contributing
 
