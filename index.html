@@ -122,6 +122,11 @@
     </div>
 
     <script>
+        let currentWord = "";
+        let enterHeld = false;
+        let pressStartTime = 0;
+        const minPressedDuration = 250;
+
         async function fetchRandomWord() {
             try {
                 const response = await fetch("https://random-word-api.herokuapp.com/word");
@@ -131,8 +136,6 @@
                 return "error";
             }
         }
-
-        let currentWord = "";
 
         async function displayNewWord() {
             currentWord = await fetchRandomWord();
@@ -155,20 +158,35 @@
 
         function emulateButtonPress() {
             const button = document.getElementById("submit-button");
-
-            const hoverTime = Math.random() * 0.05 + 0.15;
-            const clickTime = Math.random() * 0.05 + 0.15;
-            const releaseTime = 0.5 - hoverTime - clickTime;
-
             button.classList.add("button-pressed");
-            setTimeout(() => {
-                button.classList.remove("button-pressed");
-            }, (clickTime + hoverTime) * 1000);
+        }
 
-            button.classList.add("button-hover");
-            setTimeout(() => {
-                button.classList.remove("button-hover");
-            }, hoverTime * 2000);
+        function resetButtonState() {
+            const button = document.getElementById("submit-button");
+            button.classList.remove("button-pressed");
+        }
+
+        function handleEnterPress() {
+            if (!enterHeld) {
+                enterHeld = true;
+                pressStartTime = new Date().getTime();
+                checkUserInput();
+                emulateButtonPress();
+            }
+        }
+
+        function handleEnterRelease() {
+            if (enterHeld) {
+                const pressDuration = new Date().getTime() - pressStartTime;
+                if (pressDuration < minPressedDuration) {
+                    setTimeout(() => {
+                        resetButtonState();
+                    }, minPressedDuration - pressDuration);
+                } else {
+                    resetButtonState();
+                }
+                enterHeld = false;
+            }
         }
 
         document.getElementById("submit-button").addEventListener("click", function() {
@@ -177,8 +195,13 @@
 
         document.getElementById("user-input").addEventListener("keydown", function(event) {
             if (event.key === "Enter") {
-                checkUserInput();
-                emulateButtonPress();
+                handleEnterPress();
+            }
+        });
+
+        document.getElementById("user-input").addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                handleEnterRelease();
             }
         });
 
