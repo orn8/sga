@@ -20,6 +20,9 @@
 - **Offline Access:** Save the webpage as `.html` and use Local Mode when offline.
 - **Random Word API:** Get access to a library of over 170k+ words! (Powered by the [Random Word API](https://random-word-api.herokuapp.com/))
 
+> [!NOTE]
+> The site will display the word "error" if the Random Word API encounters an error. Switch to local mode if this occurs.
+
 ## Upcoming Features:
 
 - [ ] Notification System
@@ -35,8 +38,8 @@ If you'd like to contribute, please report an issue, or fork the repo and create
 
 ### Our Contributors ✨
 
-<a href="https://github.com/orn8/tinfoil/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=orn8/tinfoil" />
+<a href="https://github.com/orn8/sga/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=orn8/sga" />
 </a>
 
 <br/>
