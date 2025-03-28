@@ -182,106 +182,9 @@
         input:checked + .slider:before {
             transform: translateX(30px);
         }
-
-        /* App Menu */
-        #app-menu-container {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        z-index: 1000;
-        }
-
-        #app-menu-button {
-        background-color: #262626;
-        color: #f5f5f5;
-        font-size: 18px;
-        padding: 10px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        }
-
-        #app-menu-button:hover {
-        background-color: #FC6A04;
-        }
-
-        #app-menu-grid {
-        position: absolute;
-        top: 50px;
-        right: 0;
-        background-color: #1a1a1a;
-        border: 1px solid #333;
-        border-radius: 8px;
-        padding: 15px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: 10px;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-        }
-
-        #app-menu-grid.show {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        }
-
-        .app-menu-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        cursor: pointer;
-        transition: transform 0.2s, background-color 0.2s;
-        padding: 10px;
-        border-radius: 8px;
-        }
-
-        .app-menu-item:hover {
-        transform: scale(1.05);
-        background-color: #FC6A04;
-        }
-
-        .app-menu-item img {
-        width: 50px;
-        height: 50px;
-        margin-bottom: 5px;
-        }
-
-        .app-menu-item p {
-        font-size: 14px;
-        color: #f5f5f5;
-        margin: 0;
-        }
     </style>
 </head>
 <body>
-
-    <!-- App Menu -->
-    <div id="app-menu-container">
-        <button id="app-menu-button">☰</button>
-        <div id="app-menu-grid">
-        <div class="app-menu-item" data-link="https://oragne.dev">
-            <img src="https://oragne.dev/favicon/apple-icon.png" alt="oragne.dev" />
-            <p>oragne.dev</p>
-        </div>
-        <div class="app-menu-item" data-link="https://vanishgames.oragne.dev">
-            <img src="https://vanishgames.oragne.dev/favicon/apple-icon.png" alt="VanishGames" />
-            <p>VanishGames</p>
-        </div>
-        <div class="app-menu-item" data-link="https://kahootfetcher.oragne.dev">
-            <img src="https://kahootfetcher.oragne.dev/favicon/apple-icon.png" alt="KahootFetcher" />
-            <p>KahootFetcher</p>
-        </div>
-        <div class="app-menu-item" data-link="https://sga.oragne.dev">
-            <img src="https://sga.oragne.dev/favicon/apple-icon.png" alt="SGA Trainer" />
-            <p>SGA Trainer</p>
-        </div>
-        </div>
-    </div>  
-
     <div class="container">
         <h1>SGA Trainer</h1>
         <div id="word-display"></div>
@@ -299,7 +202,6 @@
             </label>
         </div>
     </div>
-
     <script>
         // Variable to store the current word
         let currentWord = "";
@@ -411,26 +313,47 @@
         // Initialize with a new word on page load
         window.onload = displayNewWord; // Display a new word when the page loads
 
-        // App Menu
-        document.addEventListener("DOMContentLoaded", () => {
-        const menuButton = document.getElementById("app-menu-button");
-        const menuGrid = document.getElementById("app-menu-grid");
+        // App menu
+        (function() {
+        // URLs for hosted files
+        const cssUrl = "https://raw.githubusercontent.com/orn8/appmenu/refs/heads/main/appmenu.css";
+        const jsUrl = "https://raw.githubusercontent.com/orn8/appmenu/refs/heads/main/appmenu.js";
+        const htmlUrl = "https://raw.githubusercontent.com/orn8/appmenu/refs/heads/main/appmenu.html";
 
-        menuButton.addEventListener("click", () => {
-            menuGrid.classList.toggle("show");
-        });
+        // Function to load CSS
+        function loadCSS(url) {
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = url;
+            document.head.appendChild(link);
+        }
 
-        const appItems = document.querySelectorAll(".app-menu-item");
-
-        appItems.forEach((item) => {
-            item.addEventListener("click", () => {
-            const link = item.dataset.link;
-            if (link) {
-                window.open(link, "_blank");
-            }
+        // Function to load JavaScript
+        function loadJS(url) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement("script");
+                script.src = url;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.body.appendChild(script);
             });
-        });
-        });
+        }
+
+        // Function to load HTML and append it to the body
+        function loadHTML(url) {
+            return fetch(url)
+                .then(response => response.text())
+                .then(html => {
+                    document.body.insertAdjacentHTML("afterbegin", html);
+                });
+        }
+
+        // Load CSS, HTML, and JS
+        loadCSS(cssUrl);
+        loadHTML(htmlUrl)
+            .then(() => loadJS(jsUrl))
+            .catch(error => console.error("Error loading app menu:", error));
+        })();
     </script>
 </body>
 </html>
