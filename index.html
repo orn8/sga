@@ -221,7 +221,7 @@
         // Fetch a random word from the API
         async function fetchRandomWord() {
             try {
-                const response = await fetch("https://random-word-api.herokuapp.com/word");
+                const response = await fetch("https://oragne-proxies.vercel.app/api/cors?url=https%3A%2F%2Frandom-word-api.herokuapp.com%2Fword");
                 const word = await response.json();
                 return word[0]; // Return the first word from the API response
             } catch (error) {
